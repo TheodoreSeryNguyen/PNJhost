@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PNJhost - Hébergement Web</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        
+        header {
+            background-color: #05d5fa;
+            color: #ffffff;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        
+        nav ul {
+            padding: 0;
+            list-style-type: none;
+        }
+        
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        nav ul li a:hover {
+            color: #e8491d;
+        }
+        
+        main {
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        h2 {
+            color: #35424a;
+            border-bottom: 2px solid #e8491d;
+            padding-bottom: 10px;
+        }
+        
+        .temoignage {
+            background-color: #ffffff;
+            border-radius: 5px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .temoignage p {
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+        
+        .temoignage cite {
+            font-weight: bold;
+            color: #e8491d;
+        }
+        
+        footer {
+            background-color: #35424a;
+            color: #ffffff;
+            text-align: center;
+            padding: 1rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>PNJhost</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="retours.html">Retours</a></li>
+                <li><a href="achatserveurs.html">Achat de serveurs</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Retours de nos clients</h2>
+        <div class="temoignage">
+            <p>"Une DINGUERIE !"</p>
+            <cite>- Leo Délicieux</cite>
+        </div>
+        <div class="temoignage">
+            <p>"ENORME !!!"</p>
+            <cite>- Jamy</cite>
+        </div>
+        <div class="temoignage">
+            <p>"VA FAIRE TES DEVOIRS"</p>
+            <cite>- ta mère</cite>
+        </div>
+        <div class="temoignage">
+            <p>"J'ai trouvé le lait"</p>
+            <cite>- ton père</cite>
+        </div>
+    </main>
+    <main>
+        <h2>Contactez-nous</h2>
+        <form action="#" method="post">
+            <label for="nom">Nom :</label>
+            <input type="text" id="nom" name="nom" required>
+    
+            <label for="email">Email :</label>
+            <input type="email" id="email" name="email" required>
+    
+            <label for="message">Message :</label>
+            <textarea id="message" name="message" required></textarea>
+    
+            <button type="submit">Envoyer</button>
+        </form>
+    </main>
+    <footer>
+        <p>&copy; 2024 PNJhost. Tous droits réservés.</p>
+    </footer>
+</body>
+</html>

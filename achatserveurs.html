@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Commandez votre hébergement personnalisé chez PNJhost">
+    <title>PNJhost - Commander un hébergement</title>
+    <style>
+        :root {
+            --primary-color: #05d5fa;
+            --secondary-color: #0388a6;
+            --background-color: #f4f4f4;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 1rem;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav ul li a:hover, nav ul li a:focus {
+            background-color: var(--secondary-color);
+        }
+
+        main {
+            padding: 20px;
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+
+        h2 {
+            color: var(--primary-color);
+        }
+
+        form {
+            display: grid;
+            gap: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover, button:focus {
+            background-color: var(--secondary-color);
+        }
+
+        footer {
+            background-color: var(--text-color);
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>PNJhost</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="retours.html">Retours</a></li>
+                    <li><a href="achatserveurs.html">Achat de serveurs</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <h2>Commander un hébergement</h2>
+        <form action="#" method="post">
+            <div>
+                <label for="nom">Nom :</label>
+                <input type="text" id="nom" name="nom" required>
+            </div>
+            <div>
+                <label for="email">Email :</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div>
+                <label for="plan">Plan d'hébergement :</label>
+                <select id="plan" name="plan" required>
+                    <option value="">Choisissez un plan</option>
+                    <option value="gaming">Gaming</option>
+                    <option value="stockage">Stockage</option>
+                    <option value="enterprise">Enterprise</option>
+                    <option value="perso">Personnel</option>
+                    <option value="partage">Partage</option>
+                </select>
+            </div>
+            <div>
+                <label for="domaine">Nom de domaine :</label>
+                <input type="text" id="domaine" name="domaine" required>
+            </div>
+            <div>
+                <label for="nbcoeur">Nombre de cœurs :</label>
+                <input type="number" id="nbcoeur" name="nbcoeur" min="1" required>
+            </div>
+            <div>
+                <label for="stockage">Espace de stockage (Go) :</label>
+                <input type="number" id="stockage" name="stockage" min="1" required>
+            </div>
+            <div>
+                <label for="RAM">Mémoire vive (Go) :</label>
+                <input type="number" id="RAM" name="RAM" min="1" required>
+            </div>
+            <button type="submit">Commander</button>
+        </form>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 PNJhost. Tous droits réservés.</p>
+        </div>
+    </footer>
+</body>
+</html>
