@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PNJhost.fr - Mon Panier</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>PNJHOST</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                <li><a href="retours.html"><i class="fas fa-comment-alt"></i> Retours</a></li>
+                <li><a href="achatserveurs.html"><i class="fas fa-server"></i> Achat de serveurs</a></li>
+                <li><a href="aide.html"><i class="fas fa-question-circle"></i> Aide</a></li>
+                <li><a href="panier.html"><i class="fas fa-shopping-cart"></i> Mon Panier</a></li>
+                <li><a href="compte.html"><i class="fas fa-user"></i> Mon compte</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="cart">
+            <h2>Mon Panier</h2>
+            <div id="cart-items"></div>
+            <div id="cart-total" class="cart-total"></div>
+            <a href="paiement.html" class="checkout-btn">Procéder au paiement</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 PNJhost. Tous droits réservés.</p>
+    </footer>
+
+    <script src="cart-utils.js"></script>
+    <script>
+        const footerDate = document.querySelector('footer p');
+        const currentDate = new Date();
+        footerDate.textContent = `© ${currentDate.getFullYear()} PNJhost. Tous droits réservés.`;
+
+        function loadCart() {
+            const cart = getCart();
+            const cartItemsDiv = document.getElementById('cart-items');
+            const cartTotalDiv = document.getElementById('cart-total');
+            
+            if (cart.length === 0) {
+                cartItemsDiv.innerHTML = '<p>Votre panier est vide.</p>';
+                cartTotalDiv.innerHTML = '';
+                return;
+            }
+
+            let total = 0;
+            cartItemsDiv.innerHTML = cart.map((item, index) => {
+                const itemTotal = parseFloat(item.price) * item.quantity;
+                total += itemTotal;
+                return `
+                    <div class="cart-item">
+                        <div class="cart-item-details">
+                            <h3>${item.planName}</h3>
+                            <p>${item.specs}</p>
+                            <p>Quantité: ${item.quantity}</p>
+                        </div>
+                        <div class="cart-item-controls">
+                            <span class="cart-item-price">${item.price} €/mois</span>
+                            <button class="btn remove-btn" onclick="removeFromCart(${index})">Retirer</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            cartTotalDiv.innerHTML = `<div class="total">Total: ${total.toFixed(2)} €/mois</div>`;
+        }
+
+        function removeFromCart(index) {
+            let cart = getCart();
+            cart.splice(index, 1);
+            saveCart(cart);
+            loadCart();
+            updateCartCount();
+        }
+
+        function updateCartCount() {
+            const totalItems = getCartCount();
+            const panierLink = document.querySelector('a[href="panier.html"]');
+            if (panierLink) {
+                panierLink.setAttribute('data-count', totalItems || '');
+            }
+        }
+
+        loadCart();
+        updateCartCount();
+    </script>
+</body>
+</html>

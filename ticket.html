@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PNJhost - Ticket</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>PNJHOST</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                <li><a href="retours.html"><i class="fas fa-comment-alt"></i> Retours</a></li>
+                <li><a href="achatserveurs.html"><i class="fas fa-server"></i> Achat de serveurs</a></li>
+                <li><a href="aide.html"><i class="fas fa-question-circle"></i> Aide</a></li>
+                <li><a href="panier.html"><i class="fas fa-shopping-cart"></i> Mon Panier</a></li>
+                <li><a href="compte.html"><i class="fas fa-user"></i> Mon compte</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Quel est votre problème ?</h2>
+        <form id="ticket-form" onsubmit="sendMail(event)">
+            <label for="nom">Nom :</label>
+            <input type="text" id="nom" name="nom" required placeholder="Votre nom">
+    
+            <label for="email">Email :</label>
+            <input type="email" id="email" name="email" required placeholder="votre@email.com">
+    
+            <label for="message">Problème :</label>
+            <textarea id="message" name="message" required placeholder="Votre problème ici..."></textarea>
+    
+            <button type="submit">Envoyer le problème <i class="fas fa-paper-plane"></i></button>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 PNJhost. Tous droits réservés.</p>
+    </footer>
+
+    <script src="cart-utils.js"></script>
+    <script>
+        const footerDate = document.querySelector('footer p');
+        const currentDate = new Date();
+        footerDate.textContent = `© ${currentDate.getFullYear()} PNJhost. Tous droits réservés.`;
+
+        function updateCartCount() {
+            const totalItems = getCartCount();
+            const panierLink = document.querySelector('a[href="panier.html"]');
+            if (panierLink) {
+                panierLink.setAttribute('data-count', totalItems || '');
+            }
+        }
+
+        updateCartCount();
+
+        function sendMail(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('nom').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            if (!name || !email || !message) {
+                alert('Merci de remplir tous les champs avant d’envoyer.');
+                return;
+            }
+
+            const subject = encodeURIComponent(`Demande de support PNJhost de ${name}`);
+            const body = encodeURIComponent(
+                `Nom: ${name}\nEmail: ${email}\n\nProblème:\n${message}`
+            );
+
+            const mailtoLink = `mailto:pnjhost@gmail.com?subject=${subject}&body=${body}`;
+            window.location.href = mailtoLink;
+        }
+    </script>
+</body>
+</html>

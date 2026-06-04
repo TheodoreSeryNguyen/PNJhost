@@ -1,200 +1,265 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Commandez votre hébergement personnalisé chez PNJhost">
-    <title>PNJhost - Commander un hébergement</title>
-    <style>
-        :root {
-            --primary-color: #05d5fa;
-            --secondary-color: #0388a6;
-            --background-color: #f4f4f4;
-            --text-color: #333;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: var(--background-color);
-            color: var(--text-color);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        header {
-            background-color: var(--primary-color);
-            color: #fff;
-            padding: 1rem;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 2rem;
-        }
-
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        nav ul li {
-            margin: 0 10px;
-        }
-
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            padding: 5px 10px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-
-        nav ul li a:hover, nav ul li a:focus {
-            background-color: var(--secondary-color);
-        }
-
-        main {
-            padding: 20px;
-            max-width: 600px;
-            margin: 20px auto;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            border-radius: 8px;
-        }
-
-        h2 {
-            color: var(--primary-color);
-        }
-
-        form {
-            display: grid;
-            gap: 15px;
-        }
-
-        label {
-            font-weight: bold;
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        input, select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 16px;
-        }
-
-        button {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s ease;
-        }
-
-        button:hover, button:focus {
-            background-color: var(--secondary-color);
-        }
-
-        footer {
-            background-color: var(--text-color);
-            color: #fff;
-            text-align: center;
-            padding: 1rem;
-            margin-top: 20px;
-        }
-
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 1.5rem;
-            }
-
-            nav ul {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            nav ul li {
-                margin: 5px 0;
-            }
-        }
-    </style>
+    <title>PNJhost - Catalogue d'hébergement</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <header>
-        <div class="container">
-            <h1>PNJhost</h1>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Accueil</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="retours.html">Retours</a></li>
-                    <li><a href="achatserveurs.html">Achat de serveurs</a></li>
-                </ul>
-            </nav>
-        </div>
+        <h1>PNJHOST</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                <li><a href="retours.html"><i class="fas fa-comment-alt"></i> Retours</a></li>
+                <li><a href="achatserveurs.html"><i class="fas fa-server"></i> Achat de serveurs</a></li>
+                <li><a href="aide.html"><i class="fas fa-question-circle"></i> Aide</a></li>
+                <li><a href="panier.html"><i class="fas fa-shopping-cart"></i> Mon Panier</a></li>
+                <li><a href="compte.html"><i class="fas fa-user"></i> Mon compte</a></li>
+            </ul>
+        </nav>
     </header>
 
     <main>
-        <h2>Commander un hébergement</h2>
-        <form action="#" method="post">
-            <div>
-                <label for="nom">Nom :</label>
-                <input type="text" id="nom" name="nom" required>
-            </div>
-            <div>
-                <label for="email">Email :</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div>
-                <label for="plan">Plan d'hébergement :</label>
-                <select id="plan" name="plan" required>
-                    <option value="">Choisissez un plan</option>
-                    <option value="gaming">Gaming</option>
-                    <option value="stockage">Stockage</option>
-                    <option value="enterprise">Enterprise</option>
-                    <option value="perso">Personnel</option>
-                    <option value="partage">Partage</option>
+        <h2>Catalogue d'hébergement personnalisé</h2>
+        <div class="server-grid">
+          <div class="server-card">
+            <h3>Plan Noob</h3>
+            <form id="plan-noob-form">
+              <div>
+                <label for="plan-noob-type">Type de serveur :</label>
+                <select id="plan-noob-type" name="plan" disabled>
+                  <option value="gaming">Gaming</option>
+                  <option value="stockage">Stockage</option>
+                  <option value="perso">Personnel</option>
                 </select>
+              </div>
+              <div>
+                <label for="coeurs-noob">Nombre de cœurs :</label>
+                <input type="number" id="coeurs-noob" min="1" max="4" value="4" required disabled>
+              </div>
+              <div>
+                <label for="stockage-noob">Stockage (Go) :</label>
+                <input type="number" id="stockage-noob" min="1" max="500" value="500" required disabled>
+              </div>
+              <div>
+                <label for="ram-noob">RAM (Go) :</label>
+                <input type="number" id="ram-noob" min="1" max="32" value="32" required disabled>
+              </div>
+              <div id="prix-noob" class="prixTotal">Prix : 9,99 €/mois</div>
+                    <button type="button" class="btn" onclick="addToCart('noob')">Ajouter au panier</button>
+            </form>
+          </div>
+            <div class="server-card">
+                <h3>Plan Starter</h3>
+                <form id="plan-starter-form">
+                    <div>
+                        <label for="plan-starter-type">Type de serveur :</label>
+                        <select id="plan-starter-type" name="plan" disabled>
+                            <option value="gaming">Gaming</option>
+                            <option value="stockage">Stockage</option>
+                            <option value="perso">Personnel</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="coeurs-starter">Nombre de cœurs :</label>
+                        <input type="number" id="coeurs-starter" min="2" max="8" value="8" required disabled>
+                    </div>
+                    <div>
+                        <label for="stockage-starter">Stockage (Go) :</label>
+                        <input type="number" id="stockage-starter" min="1" max="1000" value="1000" required disabled>
+                    </div>
+                    <div>
+                        <label for="ram-starter">RAM (Go) :</label>
+                        <input type="number" id="ram-starter" min="1" max="64" value="64" required disabled>
+                    </div>
+                    <div id="prix-starter" class="prixTotal">Prix : 9,99 €/mois</div>
+                    <button type="button" class="btn" onclick="addToCart('starter')">Ajouter au panier</button>
+                </form>
             </div>
-            <div>
-                <label for="domaine">Nom de domaine :</label>
-                <input type="text" id="domaine" name="domaine" required>
+            <div class="server-card">
+                <h3>Plan Player</h3>
+                <form id="plan-player-form">
+                    <div>
+                        <label for="plan-player-type">Type de serveur :</label>
+                        <select id="plan-player-type" name="plan" disabled>
+                            <option value="gaming">Gaming</option>
+                            <option value="stockage">Stockage</option>
+                            <option value="perso">Personnel</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="coeurs-player">Nombre de cœurs :</label>
+                        <input type="number" id="coeurs-player" min="1" max="16" value="16" required disabled>
+                    </div>
+                    <div>
+                        <label for="stockage-player">Stockage (Go) :</label>
+                        <input type="number" id="stockage-player" min="1" max="2000" value="2000" required disabled>
+                    </div>
+                    <div>
+                        <label for="ram-player">RAM (Go) :</label>
+                        <input type="number" id="ram-player" min="1" max="128" value="128" required disabled>
+                    </div>
+                    <div id="prix-player" class="prixTotal">Prix : 9,99 €/mois</div>
+                    <button type="button" class="btn" onclick="addToCart('player')">Ajouter au panier</button>
+                </form>
             </div>
-            <div>
-                <label for="nbcoeur">Nombre de cœurs :</label>
-                <input type="number" id="nbcoeur" name="nbcoeur" min="1" required>
+            <div class="server-card">
+                <h3>Plan Pro</h3>
+                <form id="plan-pro-form">
+                    <div>
+                        <label for="plan-pro-type">Type de serveur :</label>
+                        <select id="plan-pro-type" name="plan" disabled>
+                            <option value="gaming">Gaming</option>
+                            <option value="stockage">Stockage</option>
+                            <option value="perso">Personnel</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="coeurs-pro">Nombre de cœurs :</label>
+                        <input type="number" id="coeurs-pro" min="1" max="32" value="32" required disabled>
+                    </div>
+                    <div>
+                        <label for="stockage-pro">Stockage (Go) :</label>
+                        <input type="number" id="stockage-pro" min="1" max="4000" value="4000" required disabled>
+                    </div>
+                    <div>
+                        <label for="ram-pro">RAM (Go) :</label>
+                        <input type="number" id="ram-pro" min="1" max="256" value="256" required disabled>
+                    </div>
+                    <div id="prix-pro" class="prixTotal">Prix : 19,99 €/mois</div>
+                    <button type="button" class="btn" onclick="addToCart('pro')">Ajouter au panier</button>
+                </form>
             </div>
-            <div>
-                <label for="stockage">Espace de stockage (Go) :</label>
-                <input type="number" id="stockage" name="stockage" min="1" required>
+
+            <div class="server-card">
+                <h3>Plan Ultra Pro</h3>
+                <form id="plan-ultra-form">
+                    <div>
+                        <label for="plan-ultra-type">Type de serveur :</label>
+                        <select id="plan-ultra-type" name="plan" disabled>
+                            <option value="gaming">Gaming</option>
+                            <option value="stockage">Stockage</option>
+                            <option value="perso">Personnel</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="coeurs-ultra">Nombre de cœurs :</label>
+                        <input type="number" id="coeurs-ultra" min="1" max="128" value="128" required disabled>
+                    </div>
+                    <div>
+                        <label for="stockage-ultra">Stockage (Go) :</label>
+                        <input type="number" id="stockage-ultra" min="1" max="10000" value="10000" required disabled>
+                    </div>
+                    <div>
+                        <label for="ram-ultra">RAM (Go) :</label>       
+                        <input type="number" id="ram-ultra" min="1" max="256" value="256" required disabled>
+                    </div>
+                    <div id="prix-ultra" class="prixTotal">Prix : 49,99 €/mois</div>
+                    <button type="button" class="btn" onclick="addToCart('ultra')">Ajouter au panier</button>
+                </form>
             </div>
-            <div>
-                <label for="RAM">Mémoire vive (Go) :</label>
-                <input type="number" id="RAM" name="RAM" min="1" required>
-            </div>
-            <button type="submit">Commander</button>
-        </form>
+        </div>
     </main>
 
     <footer>
-        <div class="container">
-            <p>&copy; 2024 PNJhost. Tous droits réservés.</p>
-        </div>
+        <p>&copy; 2025 PNJhost. Tous droits réservés.</p>
     </footer>
-</body>
-</html>
+
+    <script src="cart-utils.js"></script>
+    <script>
+        function calculerPrix(planId) {
+            const coeurs = document.getElementById(`coeurs-${planId}`);
+            const stockage = document.getElementById(`stockage-${planId}`);
+            const ram = document.getElementById(`ram-${planId}`);
+            const prixElement = document.getElementById(`prix-${planId}`);
+
+            let prixBase = 0;
+            let planName = '';
+            if (planId === 'starter') {
+                prixBase = 9.99;
+                planName = 'Plan Starter';
+            } else if (planId === 'pro') {
+                prixBase = 19.99;
+                planName = 'Plan Pro';
+            } else if (planId === 'ultra') {
+                prixBase = 49.99;
+                planName = 'Plan Ultra Pro';
+            } else if (planId === 'noob') {
+                prixBase = 4.99;
+                planName = 'Plan Noob';
+            } else if (planId === 'player') {
+                prixBase = 14.99;
+                planName = 'Plan Player';
+            }
+            
+
+            const prixParCoeur = 0.05;
+            const prixParGo = 0.02;
+            const prixParGoRAM = 0.03;
+
+            let prix = prixBase;
+            prix += parseInt(coeurs.value) * prixParCoeur;
+            prix += parseInt(stockage.value) * prixParGo;
+            prix += parseInt(ram.value) * prixParGoRAM;
+
+            prixElement.textContent = `Prix : ${prix.toFixed(2)} €/mois`;
+            return { prix: prix.toFixed(2), planName, specs: `${coeurs.value} cœurs, ${stockage.value} Go stockage, ${ram.value} Go RAM` };
+        }
+
+        function addToCart(planId) {
+            const item = calculerPrix(planId);
+            let cart = getCart();
+
+            const existingItem = cart.find(cartItem => cartItem.planId === planId && cartItem.specs === item.specs);
+            if (existingItem) {
+                existingItem.quantity = (existingItem.quantity || 1) + 1;
+            } else {
+                cart.push({
+                    planId,
+                    planName: item.planName,
+                    specs: item.specs,
+                    price: item.prix,
+                    quantity: 1
+                });
+            }
+
+            saveCart(cart);
+            alert(`${item.planName} ajouté au panier !`);
+            updateCartCount();
+        }
+
+        ['noob','starter', 'player', 'pro', 'ultra'].forEach(planId => {
+            const coeurs = document.getElementById(`coeurs-${planId}`);
+            const stockage = document.getElementById(`stockage-${planId}`);
+            const ram = document.getElementById(`ram-${planId}`);
+
+            coeurs.addEventListener('input', () => calculerPrix(planId));
+            stockage.addEventListener('input', () => calculerPrix(planId));
+            ram.addEventListener('input', () => calculerPrix(planId));
+            
+            calculerPrix(planId);
+        });
+    </script>
+
+    <script>
+        const footerDate = document.querySelector('footer p');
+        const currentDate = new Date();
+        footerDate.textContent = `© ${currentDate.getFullYear()} PNJhost. Tous droits réservés.`;
+
+        function updateCartCount() {
+            const totalItems = getCartCount();
+            const panierLink = document.querySelector('a[href="panier.html"]');
+            if (panierLink) {
+                panierLink.setAttribute('data-count', totalItems || '');
+            }
+        }
+
+        updateCartCount();
+    </script>

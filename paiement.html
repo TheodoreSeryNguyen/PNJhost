@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PNJhost - Paiement</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>PNJHOST</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                <li><a href="retours.html"><i class="fas fa-comment-alt"></i> Retours</a></li>
+                <li><a href="achatserveurs.html"><i class="fas fa-server"></i> Achat de serveurs</a></li>
+                <li><a href="aide.html"><i class="fas fa-question-circle"></i> Aide</a></li>
+                <li><a href="panier.html"><i class="fas fa-shopping-cart"></i> Mon Panier</a></li>
+                <li><a href="compte.html"><i class="fas fa-user"></i> Mon compte</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Paiement</h2>
+        <div class="payment-container">
+            <section class="payment-summary">
+                <h3>Récapitulatif de la commande</h3>
+                <div id="order-summary"></div>
+                <div id="order-total" class="cart-total"></div>
+            </section>
+
+            <section class="payment-form-card">
+                <h3>Informations de paiement</h3>
+                <form id="payment-form">
+                    <div class="form-group">
+                        <label for="payer-name">Nom du titulaire :</label>
+                        <input type="text" id="payer-name" name="payer-name" required placeholder="Jean Dupont">
+                    </div>
+                    <div class="form-group">
+                        <label for="card-number">Numéro de carte :</label>
+                        <input type="text" id="card-number" name="card-number" required placeholder="1234 5678 9012 3456" maxlength="19">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="expiry">Date d'expiration :</label>
+                            <input type="text" id="expiry" name="expiry" required placeholder="MM/AA" maxlength="5">
+                        </div>
+                        <div class="form-group">
+                            <label for="cvc">CVC :</label>
+                            <input type="text" id="cvc" name="cvc" required placeholder="123" maxlength="4">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn checkout-btn">Payer maintenant</button>
+                </form>
+                <p class="payment-note">Le paiement est simulé pour l’instant. Après confirmation, votre panier sera vidé.</p>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 PNJhost. Tous droits réservés.</p>
+    </footer>
+
+    <script src="cart-utils.js"></script>
+    <script>
+        const footerDate = document.querySelector('footer p');
+        const currentDate = new Date();
+        footerDate.textContent = `© ${currentDate.getFullYear()} PNJhost. Tous droits réservés.`;
+
+        function updateCartCount() {
+            const totalItems = getCartCount();
+            const panierLink = document.querySelector('a[href="panier.html"]');
+            if (panierLink) {
+                panierLink.setAttribute('data-count', totalItems || '');
+            }
+        }
+
+        function renderOrderSummary() {
+            const cart = getCart();
+            const orderSummary = document.getElementById('order-summary');
+            const orderTotal = document.getElementById('order-total');
+
+            if (!cart.length) {
+                orderSummary.innerHTML = '<p>Votre panier est vide. Retournez à la page <a href="panier.html">Panier</a> pour ajouter un serveur.</p>';
+                orderTotal.innerHTML = '';
+                document.getElementById('payment-form').style.display = 'none';
+                return;
+            }
+
+            let total = 0;
+            orderSummary.innerHTML = cart.map(item => {
+                const itemTotal = parseFloat(item.price) * item.quantity;
+                total += itemTotal;
+                return `
+                    <div class="cart-item">
+                        <div class="cart-item-details">
+                            <h4>${item.planName}</h4>
+                            <p>${item.specs}</p>
+                            <p>Quantité: ${item.quantity}</p>
+                        </div>
+                        <span class="cart-item-price">${itemTotal.toFixed(2)} €/mois</span>
+                    </div>
+                `;
+            }).join('');
+
+            orderTotal.innerHTML = `<div class="total">Total: ${total.toFixed(2)} €/mois</div>`;
+        }
+
+        document.getElementById('payment-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const cart = getCart();
+            if (!cart.length) {
+                alert('Votre panier est vide.');
+                return;
+            }
+            clearCart();
+            updateCartCount();
+            alert('Paiement simulé réussi ! Merci pour votre commande.');
+            window.location.href = 'index.html';
+        });
+
+        renderOrderSummary();
+        updateCartCount();
+    </script>
+</body>
+</html>

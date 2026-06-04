@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PNJhost - Mon compte</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header>
+    <h1>PNJHOST</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+        <li><a href="retours.html"><i class="fas fa-comment-alt"></i> Retours</a></li>
+        <li><a href="achatserveurs.html"><i class="fas fa-server"></i> Achat de serveurs</a></li>
+        <li><a href="aide.html"><i class="fas fa-question-circle"></i> Aide</a></li>
+        <li><a href="panier.html"><i class="fas fa-shopping-cart"></i> Mon Panier</a></li>
+        <li><a href="compte.html"><i class="fas fa-user"></i> Mon compte</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="account-section">
+      <h2>Mon compte</h2>
+      <div class="account-card">
+        <div class="account-switch">
+          <button id="login-toggle" class="toggle-btn active" type="button">Se connecter</button>
+          <button id="register-toggle" class="toggle-btn" type="button">S'enregistrer</button>
+        </div>
+
+        <div id="login-panel" class="account-panel">
+          <p>Connectez-vous pour accéder à votre espace client et gérer vos services.</p>
+          <form id="login-form" class="account-form">
+            <div class="form-group">
+              <label for="email">Adresse e-mail</label>
+              <input type="email" id="email" name="email" placeholder="votre@email.com" required>
+            </div>
+            <div class="form-group">
+              <label for="password">Mot de passe</label>
+              <input type="password" id="password" name="password" placeholder="Entrez votre mot de passe" required>
+            </div>
+            <button type="submit" class="btn">Se connecter</button>
+          </form>
+        </div>
+
+        <div id="register-panel" class="account-panel hidden">
+          <p>Créez votre compte en quelques secondes.</p>
+          <form id="register-form" class="account-form">
+            <div class="form-group">
+              <label for="register-name">Nom complet</label>
+              <input type="text" id="register-name" name="name" placeholder="Votre nom" required>
+            </div>
+            <div class="form-group">
+              <label for="register-email">Adresse e-mail</label>
+              <input type="email" id="register-email" name="email" placeholder="votre@email.com" required>
+            </div>
+            <div class="form-group">
+              <label for="register-password">Mot de passe</label>
+              <input type="password" id="register-password" name="password" placeholder="Choisissez un mot de passe" required>
+            </div>
+            <div class="form-group">
+              <label for="register-password-confirm">Confirmer le mot de passe</label>
+              <input type="password" id="register-password-confirm" name="passwordConfirm" placeholder="Confirmez le mot de passe" required>
+            </div>
+            <button type="submit" class="btn">S'enregistrer</button>
+          </form>
+        </div>
+
+        <div id="account-info" class="account-panel hidden">
+          <div class="info-box">
+            <h3>Bienvenue, <span id="user-name"></span></h3>
+            <p>Votre e-mail : <strong id="user-email"></strong></p>
+            <p>Statut du compte : <span class="status-badge">Actif</span></p>
+          </div>
+          <div class="account-actions">
+            <button id="logout-btn" class="btn secondary-btn">Déconnexion</button>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 PNJhost. Tous droits réservés.</p>
+  </footer>
+
+  <script src="cart-utils.js"></script>
+  <script>
+    const footerDate = document.querySelector('footer p');
+    const currentDate = new Date();
+    footerDate.textContent = `© ${currentDate.getFullYear()} PNJhost. Tous droits réservés.`;
+
+    const loginForm = document.getElementById('login-form');
+    const registerForm = document.getElementById('register-form');
+    const loginToggle = document.getElementById('login-toggle');
+    const registerToggle = document.getElementById('register-toggle');
+    const loginPanel = document.getElementById('login-panel');
+    const registerPanel = document.getElementById('register-panel');
+    const accountInfoPanel = document.getElementById('account-info');
+    const userNameElement = document.getElementById('user-name');
+    const userEmailElement = document.getElementById('user-email');
+    const logoutButton = document.getElementById('logout-btn');
+
+    const usersKey = 'pnjhostUsers';
+
+    function getUsers() {
+      return JSON.parse(localStorage.getItem(usersKey) || '{}');
+    }
+
+    function saveUsers(users) {
+      localStorage.setItem(usersKey, JSON.stringify(users));
+    }
+
+    function getSavedUser() {
+      return getCurrentUser();
+    }
+
+    function saveCurrentUser(user) {
+      localStorage.setItem(accountKey, JSON.stringify(user));
+    }
+
+    function createUser({ email, name, password }) {
+      const users = getUsers();
+      users[email] = { email, name, password };
+      saveUsers(users);
+      saveCurrentUser({ email, name });
+    }
+
+    function authenticateUser(email, password) {
+      const users = getUsers();
+      const user = users[email];
+      if (!user || user.password !== password) {
+        return null;
+      }
+      saveCurrentUser({ email: user.email, name: user.name });
+      return user;
+    }
+
+    function showPanel(panel) {
+      const showLogin = panel === 'login';
+      loginPanel.classList.toggle('hidden', !showLogin);
+      registerPanel.classList.toggle('hidden', showLogin);
+      loginToggle.classList.toggle('active', showLogin);
+      registerToggle.classList.toggle('active', !showLogin);
+    }
+
+    function logout() {
+      localStorage.removeItem(accountKey);
+      renderAccount();
+      showPanel('login');
+    }
+
+    function renderAccount() {
+      const user = getSavedUser();
+      if (!user) {
+        accountInfoPanel.classList.add('hidden');
+        loginPanel.classList.remove('hidden');
+        registerPanel.classList.add('hidden');
+        loginToggle.classList.add('active');
+        registerToggle.classList.remove('active');
+        return;
+      }
+
+      loginPanel.classList.add('hidden');
+      registerPanel.classList.add('hidden');
+      accountInfoPanel.classList.remove('hidden');
+      userNameElement.textContent = user.name;
+      userEmailElement.textContent = user.email;
+    }
+
+    loginToggle.addEventListener('click', () => showPanel('login'));
+    registerToggle.addEventListener('click', () => showPanel('register'));
+
+    loginForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+      const email = loginForm.email.value.trim();
+      const password = loginForm.password.value.trim();
+
+      if (!email || !password) {
+        alert('Veuillez saisir votre adresse e-mail et votre mot de passe.');
+        return;
+      }
+
+      const user = authenticateUser(email, password);
+      if (!user) {
+        alert('Identifiants incorrects. Vérifiez votre e-mail et votre mot de passe.');
+        return;
+      }
+
+      mergeGuestCart();
+      loginForm.reset();
+      renderAccount();
+    });
+
+    registerForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+      const name = registerForm.name.value.trim();
+      const email = registerForm.email.value.trim();
+      const password = registerForm.password.value.trim();
+      const passwordConfirm = registerForm.passwordConfirm.value.trim();
+
+      if (!name || !email || !password || !passwordConfirm) {
+        alert('Veuillez remplir tous les champs.');
+        return;
+      }
+
+      if (password !== passwordConfirm) {
+        alert('Les mots de passe ne correspondent pas.');
+        return;
+      }
+
+      const users = getUsers();
+      if (users[email]) {
+        alert('Un compte existe déjà avec cette adresse e-mail.');
+        return;
+      }
+
+      createUser({ email, name, password });
+      mergeGuestCart();
+      registerForm.reset();
+      renderAccount();
+    });
+
+    logoutButton.addEventListener('click', logout);
+
+    mergeGuestCart();
+    renderAccount();
+  </script>
+</body>
+
+</html>

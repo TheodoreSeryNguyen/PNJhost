@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PNJhost - Support Technique</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>PNJHOST</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                <li><a href="retours.html"><i class="fas fa-comment-alt"></i> Retours</a></li>
+                <li><a href="achatserveurs.html"><i class="fas fa-server"></i> Achat de serveurs</a></li>
+                <li><a href="aide.html"><i class="fas fa-question-circle"></i> Aide</a></li>
+                <li><a href="panier.html"><i class="fas fa-shopping-cart"></i> Mon Panier</a></li>
+                <li><a href="compte.html"><i class="fas fa-user"></i> Mon compte</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <h2>Support Technique</h2>
+            <p>Nous sommes là pour vous aider : mail, ticket ou chat Discord, choisissez le support qui vous convient.</p>
+        </section>
+
+        <div class="support-methods">
+            <div class="support-method">
+                <i class="fas fa-envelope"></i>
+                <h3>Support par Email</h3>
+                <p>Envoyez-nous un message à <a href="mailto:pnjhost@gmail.com">pnjhost@gmail.com</a>.</p>
+            </div>
+            <div class="support-method">
+                <i class="fas fa-phone"></i>
+                <h3>Support Téléphonique</h3>
+                <p>Appelez-nous au +33 7 49 99 64 43 pour une assistance rapide.</p>
+            </div>
+            <a class="support-method" href="ticket.html">
+                <i class="fas fa-ticket-alt"></i>
+                <h3>Système de Tickets</h3>
+                <p>Ouvrez un ticket et suivez le traitement de votre demande.</p>
+            </a>
+            <a class="support-method" href="https://discord.gg/mfwaghrZNM">
+                <i class="fab fa-discord"></i>
+                <h3>Support Discord</h3>
+                <p>Rejoignez notre serveur pour échanger en direct.</p>
+            </a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 PNJhost. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        const footerDate = document.querySelector('footer p');
+        const currentDate = new Date();
+        footerDate.textContent = `© ${currentDate.getFullYear()} PNJhost. Tous droits réservés.`;
+    </script>
+</body>
+</html>
